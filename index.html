@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern E-Commerce - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link">
+                    <img src="logo.png" alt="Logo" class="logo-img" style="height:40px;width:auto;vertical-align:middle;">
+                </a>
+                <h2 style="display:inline-block;margin-left:10px;vertical-align:middle;">E-Commerce</h2>
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="products.html" class="nav-link">Products</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="cart.html" class="nav-link cart-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+                <a href="admin.html" class="nav-link" id="adminNavBtn">Admin</a>
+                <div class="auth-links" id="authLinks">
+                    <a href="auth.html" class="nav-link">Login</a>
+                </div>
+            </div>
+            
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" style="position:relative;overflow:hidden;">
+        <video autoplay loop muted playsinline poster="https://assets.coverr.co/videos/coverr-cyber-city-thumb.jpg" class="hero-bg-video">
+            <source src="https://assets.coverr.co/videos/coverr-cyber-city.mp4" type="video/mp4">
+            <img src="https://assets.coverr.co/videos/coverr-cyber-city-thumb.jpg" alt="Background" style="width:100vw;height:100%;object-fit:cover;filter:brightness(0.6) blur(1px);position:absolute;top:0;left:0;z-index:0;">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-content" style="position:relative;z-index:1;">
+            <h1>Welcome to Modern E-Commerce</h1>
+            <p>Discover amazing products with the best shopping experience</p>
+            <a href="products.html" class="btn-primary">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- First Carousel Section -->
+    <section class="carousel-section">
+        <div class="container">
+            <h2>Featured Products</h2>
+            <div class="carousel" id="featuredCarousel">
+                <div class="carousel-container">
+                    <div class="carousel-slide">
+                        <img src="https://via.placeholder.com/400x300/007bff/ffffff?text=Featured+Product+1" alt="Featured Product 1">
+                        <div class="slide-content">
+                            <h3>Premium Product 1</h3>
+                            <p>Experience quality like never before</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://via.placeholder.com/400x300/28a745/ffffff?text=Featured+Product+2" alt="Featured Product 2">
+                        <div class="slide-content">
+                            <h3>Premium Product 2</h3>
+                            <p>Innovation meets excellence</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://via.placeholder.com/400x300/dc3545/ffffff?text=Featured+Product+3" alt="Featured Product 3">
+                        <div class="slide-content">
+                            <h3>Premium Product 3</h3>
+                            <p>Crafted for perfection</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel('featuredCarousel', -1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn next" onclick="moveCarousel('featuredCarousel', 1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Second Carousel Section -->
+    <section class="carousel-section">
+        <div class="container">
+            <h2>Latest Arrivals</h2>
+            <div class="carousel" id="latestCarousel">
+                <div class="carousel-container">
+                    <div class="carousel-slide">
+                        <img src="https://via.placeholder.com/400x300/6f42c1/ffffff?text=New+Arrival+1" alt="New Arrival 1">
+                        <div class="slide-content">
+                            <h3>New Arrival 1</h3>
+                            <p>Fresh from our collection</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://via.placeholder.com/400x300/fd7e14/ffffff?text=New+Arrival+2" alt="New Arrival 2">
+                        <div class="slide-content">
+                            <h3>New Arrival 2</h3>
+                            <p>Trending now</p>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://via.placeholder.com/400x300/20c997/ffffff?text=New+Arrival+3" alt="New Arrival 3">
+                        <div class="slide-content">
+                            <h3>New Arrival 3</h3>
+                            <p>Must-have item</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel('latestCarousel', -1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn next" onclick="moveCarousel('latestCarousel', 1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-shipping-fast"></i>
+                    <h3>Fast Shipping</h3>
+                    <p>Quick delivery to your doorstep</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Secure Payment</h3>
+                    <p>Your payments are safe with us</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-headset"></i>
+                    <h3>24/7 Support</h3>
+                    <p>Always here to help you</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>E-Commerce</h3>
+                    <p>Your trusted shopping destination</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Track Order</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i> info@ecommerce.com</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Business St, City</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 E-Commerce. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="config.js"></script>
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="auth.js"></script>
+    <script type="module" src="carousel.js"></script>
+    <script type="module" src="cart.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

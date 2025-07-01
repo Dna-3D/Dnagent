@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Modern E-Commerce</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>E-Commerce Admin</h2>
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Back to Store</a>
+                <div class="auth-links" id="authLinks">
+                    <a href="auth.html" class="nav-link">Login</a>
+                </div>
+            </div>
+            
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Login -->
+    <section class="admin-login" id="adminLogin">
+        <div class="container">
+            <div class="login-card">
+                <h2><i class="fas fa-shield-alt"></i> Admin Access</h2>
+                <form id="adminLoginForm">
+                    <div class="form-group">
+                        <label for="adminPassword">Password</label>
+                        <input type="password" id="adminPassword" placeholder="Enter admin password" required>
+                    </div>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Access Admin Panel
+                    </button>
+                </form>
+                <div class="error-message" id="loginError" style="display: none;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Panel -->
+    <section class="admin-panel" id="adminPanel" style="display: none;">
+        <div class="container">
+            <!-- Admin Dashboard -->
+            <div class="admin-header">
+                <h1>Admin Dashboard</h1>
+                <button class="btn-secondary" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+            </div>
+
+            <!-- Admin Navigation -->
+            <div class="admin-nav">
+                <button class="admin-nav-btn active" data-section="products">
+                    <i class="fas fa-box"></i>
+                    Products
+                </button>
+                <button class="admin-nav-btn" data-section="carousels">
+                    <i class="fas fa-images"></i>
+                    Carousels
+                </button>
+                <button class="admin-nav-btn" data-section="orders">
+                    <i class="fas fa-shopping-cart"></i>
+                    Orders
+                </button>
+            </div>
+
+            <!-- Products Management -->
+            <div class="admin-section active" id="products-section">
+                <div class="section-header">
+                    <h2>Product Management</h2>
+                    <button class="btn-primary" id="addProductBtn">
+                        <i class="fas fa-plus"></i>
+                        Add Product
+                    </button>
+                </div>
+
+                <!-- Product Form -->
+                <div class="product-form" id="productForm" style="display: none;">
+                    <h3 id="formTitle">Add New Product</h3>
+                    <form id="productFormElement">
+                        <input type="hidden" id="productId">
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="productName">Product Name</label>
+                                <input type="text" id="productName" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="productPrice">Price ($)</label>
+                                <input type="number" id="productPrice" step="0.01" min="0" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="productCategory">Category</label>
+                                <select id="productCategory" required>
+                                    <option value="">Select Category</option>
+                                    <option value="electronics">Electronics</option>
+                                    <option value="clothing">Clothing</option>
+                                    <option value="home">Home & Garden</option>
+                                    <option value="sports">Sports</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="productStock">Stock Quantity</label>
+                                <input type="number" id="productStock" min="0" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="productDescription">Description</label>
+                            <textarea id="productDescription" rows="4" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="productImage">Product Image</label>
+                            <input type="file" id="productImage" accept="image/*">
+                            <div class="image-preview" id="imagePreview"></div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-save"></i>
+                                Save Product
+                            </button>
+                            <button type="button" class="btn-secondary" id="cancelProductBtn">
+                                <i class="fas fa-times"></i>
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Products List -->
+                <div class="products-list">
+                    <div class="loading" id="productsLoading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading products...</p>
+                    </div>
+                    
+                    <div class="admin-products-grid" id="adminProductsGrid">
+                        <!-- Products will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carousels Management -->
+            <div class="admin-section" id="carousels-section">
+                <div class="section-header">
+                    <h2>Carousel Management</h2>
+                    <button class="btn-primary" id="addCarouselBtn">
+                        <i class="fas fa-plus"></i>
+                        Add Carousel Item
+                    </button>
+                </div>
+
+                <!-- Carousel Form -->
+                <div class="carousel-form" id="carouselForm" style="display: none;">
+                    <h3 id="carouselFormTitle">Add New Carousel Item</h3>
+                    <form id="carouselFormElement">
+                        <input type="hidden" id="carouselId">
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="carouselTitle">Title</label>
+                                <input type="text" id="carouselTitle" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="carouselType">Carousel Type</label>
+                                <select id="carouselType" required>
+                                    <option value="">Select Type</option>
+                                    <option value="featured">Featured Products</option>
+                                    <option value="latest">Latest Arrivals</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="carouselDescription">Description</label>
+                            <textarea id="carouselDescription" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="carouselImage">Carousel Image</label>
+                            <input type="file" id="carouselImage" accept="image/*">
+                            <div class="image-preview" id="carouselImagePreview"></div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-save"></i>
+                                Save Carousel Item
+                            </button>
+                            <button type="button" class="btn-secondary" id="cancelCarouselBtn">
+                                <i class="fas fa-times"></i>
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Carousels List -->
+                <div class="carousels-list">
+                    <div class="loading" id="carouselsLoading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading carousel items...</p>
+                    </div>
+                    
+                    <div class="admin-carousels-grid" id="adminCarouselsGrid">
+                        <!-- Carousel items will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders Management -->
+            <div class="admin-section" id="orders-section">
+                <div class="section-header">
+                    <h2>Orders Management</h2>
+                </div>
+                
+                <div class="orders-list">
+                    <div class="loading" id="ordersLoading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading orders...</p>
+                    </div>
+                    
+                    <div class="admin-orders-list" id="adminOrdersList">
+                        <!-- Orders will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>E-Commerce Admin</h3>
+                    <p>Administrative panel for managing your store</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Back to Store</a></li>
+                        <li><a href="#">Admin Guide</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 E-Commerce Admin Panel. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="config.js"></script>
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="auth.js"></script>
+    <script type="module" src="admin.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
