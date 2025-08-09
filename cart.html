@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - Modern Telecom Media</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Telecom Media</h2>
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="products.html" class="nav-link">Products</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="cart.html" class="nav-link cart-link active">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+                <div class="auth-links" id="authLinks">
+                    <a href="auth.html" class="nav-link">Login</a>
+                </div>
+            </div>
+            
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Shopping Cart</h1>
+            <p>Review your items before checkout</p>
+        </div>
+    </section>
+
+    <!-- Cart Content -->
+    <section class="cart-section">
+        <div class="container">
+            <!-- Loading State -->
+            <div class="loading" id="cartLoading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading your cart...</p>
+            </div>
+
+            <!-- Empty Cart -->
+            <div class="empty-cart" id="emptyCart" style="display: none;">
+                <i class="fas fa-shopping-cart"></i>
+                <h3>Your cart is empty</h3>
+                <p>Add some products to your cart to see them here</p>
+                <a href="products.html" class="btn-primary">
+                    <i class="fas fa-shopping-bag"></i>
+                    Continue Shopping
+                </a>
+            </div>
+
+            <!-- Cart Items -->
+            <div class="cart-content" id="cartContent" style="display: none;">
+                <div class="cart-grid">
+                    <!-- Cart Items List -->
+                    <div class="cart-items">
+                        <h2>Cart Items</h2>
+                        <div class="cart-items-list" id="cartItemsList">
+                            <!-- Cart items will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Cart Summary -->
+                    <div class="cart-summary">
+                        <h2>Order Summary</h2>
+                        <div class="summary-details">
+                            <div class="summary-row">
+                                <span>Subtotal:</span>
+                                <span id="cartSubtotal">$0.00</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Shipping:</span>
+                                <span id="cartShipping">$5.99</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Tax:</span>
+                                <span id="cartTax">$0.00</span>
+                            </div>
+                            <div class="summary-row total">
+                                <span>Total:</span>
+                                <span id="cartTotal">$0.00</span>
+                            </div>
+                        </div>
+
+                        <div class="checkout-actions">
+                            <button class="btn-primary checkout-btn" id="checkoutBtn">
+                                <i class="fab fa-whatsapp"></i>
+                                Checkout via WhatsApp
+                            </button>
+                            
+                            <a href="products.html" class="btn-secondary">
+                                <i class="fas fa-shopping-bag"></i>
+                                Continue Shopping
+                            </a>
+                            
+                            <button class="btn-danger clear-cart-btn" id="clearCartBtn">
+                                <i class="fas fa-trash"></i>
+                                Clear Cart
+                            </button>
+                        </div>
+
+                        <div class="shipping-info">
+                            <h4>Shipping Information</h4>
+                            <p><i class="fas fa-truck"></i> Free shipping on orders over $50</p>
+                            <p><i class="fas fa-clock"></i> Delivery in 3-5 business days</p>
+                            <p><i class="fas fa-shield-alt"></i> Secure checkout guaranteed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Authentication Required -->
+            <div class="auth-required" id="authRequired" style="display: none;">
+                <i class="fas fa-user-lock"></i>
+                <h3>Sign in required</h3>
+                <p>Please sign in to view your cart and checkout</p>
+                <a href="auth.html" class="btn-primary">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Sign In
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommended Products -->
+    <section class="recommended-section" id="recommendedSection" style="display: none;">
+        <div class="container">
+            <h2>You might also like</h2>
+            <div class="recommended-products" id="recommendedProducts">
+                <!-- Recommended products will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Telecom Media</h3>
+                    <p>Your trusted shopping destination</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Track Order</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i>mrtelecom@gmail.com</p>
+                    <p><i class="fas fa-phone"></i>08082610560</p>
+                    <p><i class="fas fa-map-marker-alt"></i> FUTO campus</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Telecom Media. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <footer>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Telecom Media. All rights reserved.
+          <span style="margin-left:1em;">
+            <a href="https://darc.com.ng" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">designed by darc design</a>
+          </span>
+        </p>
+      </div>
+    </footer>
+    <script src="config.js"></script>
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="auth.js"></script>
+    <script type="module" src="cart.js"></script>
+    <script src="main.js"></script>
+    
+    <script>
+        // Initialize cart page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCartPage();
+        });
+    </script>
+</body>
+</html>

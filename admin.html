@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Modern Telecom Media</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Telecom Media Admin</h2>
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Back to Store</a>
+                <div class="auth-links" id="authLinks">
+                    <a href="auth.html" class="nav-link">Login</a>
+                </div>
+            </div>
+            
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Login -->
+    <section class="admin-login" id="adminLogin">
+        <div class="container">
+            <div class="login-card">
+                <h2><i class="fas fa-shield-alt"></i> Admin Access</h2>
+                <form id="adminLoginForm">
+                    <div class="form-group">
+                        <label for="adminPassword">Password</label>
+                        <input type="password" id="adminPassword" placeholder="Enter admin password" required>
+                    </div>
+                    <button type="submit" class="btn-primary">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Access Admin Panel
+                    </button>
+                </form>
+                <div class="error-message" id="loginError" style="display: none;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Panel -->
+    <section class="admin-panel" id="adminPanel" style="display: none;">
+        <div class="container">
+            <!-- Admin Dashboard -->
+            <div class="admin-header">
+                <h1>Admin Dashboard</h1>
+                <button class="btn-secondary" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </button>
+                <button class="admin-nav-btn" data-section="tickets">
+                    <i class="fas fa-ticket-alt"></i>
+                    Tickets
+                </button>
+                <button class="admin-nav-btn" data-section="candidates">
+                    <i class="fas fa-user"></i>
+                    Candidates
+                </button>
+            </div>
+
+            <!-- Admin Navigation -->
+            <div class="admin-nav">
+                <button class="admin-nav-btn active" data-section="products">
+                    <i class="fas fa-box"></i>
+                    Products
+                </button>
+                <button class="admin-nav-btn" data-section="carousels">
+                    <i class="fas fa-images"></i>
+                    Carousels
+                </button>
+                <button class="admin-nav-btn" data-section="orders">
+                    <i class="fas fa-shopping-cart"></i>
+                    Orders
+                </button>
+                <button class="admin-nav-btn" data-section="tickets">
+                    <i class="fas fa-ticket-alt"></i>
+                    Tickets
+                </button>
+                <button class="admin-nav-btn" data-section="candidates">
+                    <i class="fas fa-vote-yea"></i>
+                    Candidates
+                </button>
+            </div>
+
+            <!-- Products Management -->
+            <div class="admin-section active" id="products-section">
+                <div class="section-header">
+                    <h2>Product Management</h2>
+                    <button class="btn-primary" id="addProductBtn">
+                        <i class="fas fa-plus"></i>
+                        Add Product
+                    </button>
+                </div>
+
+                <!-- Product Form -->
+                <div class="product-form" id="productForm" style="display: none;">
+                    <h3 id="formTitle">Add New Product</h3>
+                    <form id="productFormElement">
+                        <input type="hidden" id="productId">
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="productName">Product Name</label>
+                                <input type="text" id="productName" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="productPrice">Price (₦)</label>
+                                <input type="number" id="productPrice" step="0.01" min="0" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="productCategory">Category</label>
+                                <select id="productCategory" required>
+                                    <option value="">Select Category</option>
+                                    <option value="electronics">Electronics</option>
+                                    <option value="clothing">Clothing</option>
+                                    <option value="home">Home & Garden</option>
+                                    <option value="sports">Sports</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="productStock">Stock Quantity</label>
+                                <input type="number" id="productStock" min="0" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="productDescription">Description</label>
+                            <textarea id="productDescription" rows="4" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="productImage">Product Image URL</label>
+                            <input type="url" id="productImage" placeholder="https://example.com/image.jpg" required>
+                            <div class="image-preview" id="imagePreview"></div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-save"></i>
+                                Save Product
+                            </button>
+                            <button type="button" class="btn-secondary" id="cancelProductBtn">
+                                <i class="fas fa-times"></i>
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Products List -->
+                <div class="products-list">
+                    <div class="loading" id="productsLoading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading products...</p>
+                    </div>
+                    
+                    <div class="admin-products-grid" id="adminProductsGrid">
+                        <!-- Products will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carousels Management -->
+            <div class="admin-section" id="carousels-section">
+                <div class="section-header">
+                    <h2>Carousel Management</h2>
+                    <button class="btn-primary" id="addCarouselBtn">
+                        <i class="fas fa-plus"></i>
+                        Add Carousel Item
+                    </button>
+                </div>
+
+                <!-- Carousel Form -->
+                <div class="carousel-form" id="carouselForm" style="display: none;">
+                    <h3 id="carouselFormTitle">Add New Carousel Item</h3>
+                    <form id="carouselFormElement">
+                        <input type="hidden" id="carouselId">
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="carouselTitle">Title</label>
+                                <input type="text" id="carouselTitle" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="carouselType">Carousel Type</label>
+                                <select id="carouselType" required>
+                                    <option value="">Select Type</option>
+                                    <option value="featured">Featured Products</option>
+                                    <option value="latest">Latest Arrivals</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="carouselDescription">Description</label>
+                            <textarea id="carouselDescription" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="carouselImage">Carousel Image URL</label>
+                            <input type="url" id="carouselImage" placeholder="https://example.com/image.jpg" required>
+                            <div class="image-preview" id="carouselImagePreview"></div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-save"></i>
+                                Save Carousel Item
+                            </button>
+                            <button type="button" class="btn-secondary" id="cancelCarouselBtn">
+                                <i class="fas fa-times"></i>
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Carousels List -->
+                <div class="carousels-list">
+                    <div class="loading" id="carouselsLoading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading carousel items...</p>
+                    </div>
+                    
+                    <div class="admin-carousels-grid" id="adminCarouselsGrid">
+                        <!-- Carousel items will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders Management -->
+            <div class="admin-section" id="orders-section">
+                <div class="section-header">
+                    <h2>Orders Management</h2>
+                </div>
+                
+                <div class="orders-list">
+                    <div class="loading" id="ordersLoading">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading orders...</p>
+                    </div>
+                    
+                    <div class="admin-orders-list" id="adminOrdersList">
+                        <!-- Orders will be loaded here -->
+                    </div>
+                </div>
+        
+                <!-- Tickets Management -->
+                <div class="admin-section" id="tickets-section">
+                    <div class="section-header">
+                        <h2>Tickets Management</h2>
+                        <button class="btn-primary" id="addTicketBtn">
+                            <i class="fas fa-plus"></i>
+                            Add Ticket
+                        </button>
+                    </div>
+        
+                    <!-- Ticket Form -->
+                    <div class="ticket-form" id="ticketForm" style="display: none;">
+                        <h3 id="ticketFormTitle">Add New Ticket</h3>
+                        <form id="ticketFormElement">
+                            <input type="hidden" id="ticketId">
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="ticketName">Ticket Name</label>
+                                    <input type="text" id="ticketName" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="ticketPrice">Price (₦)</label>
+                                    <input type="number" id="ticketPrice" step="0.01" min="0" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="ticketCategory">Category</label>
+                                    <select id="ticketCategory" required>
+                                        <option value="">Select Category</option>
+                                        <option value="concert">Concert</option>
+                                        <option value="sports">Sports</option>
+                                        <option value="theater">Theater</option>
+                                        <option value="conference">Conference</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="ticketStock">Stock Quantity</label>
+                                    <input type="number" id="ticketStock" min="0" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="ticketDate">Event Date</label>
+                                    <input type="date" id="ticketDate" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="ticketLocation">Location</label>
+                                    <input type="text" id="ticketLocation" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="ticketDescription">Description</label>
+                                <textarea id="ticketDescription" rows="4" required></textarea>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="ticketImage">Ticket Image URL</label>
+                                <input type="url" id="ticketImage" placeholder="https://example.com/image.jpg" required>
+                                <div class="image-preview" id="ticketImagePreview"></div>
+                            </div>
+                    
+                            <!-- Candidates Management -->
+                            <div class="admin-section" id="candidates-section">
+                                <div class="section-header">
+                                    <h2>Candidates Management</h2>
+                                    <button class="btn-primary" id="addCandidateBtn">
+                                        <i class="fas fa-plus"></i>
+                                        Add Candidate
+                                    </button>
+                                </div>
+                    
+                                <!-- Candidate Form -->
+                                <div class="candidate-form" id="candidateForm" style="display: none;">
+                                    <h3 id="candidateFormTitle">Add New Candidate</h3>
+                                    <form id="candidateFormElement">
+                                        <input type="hidden" id="candidateId">
+                                        
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="candidateName">Candidate Name</label>
+                                                <input type="text" id="candidateName" required>
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="candidateCategory">Category</label>
+                                                <select id="candidateCategory" required>
+                                                    <option value="">Select Category</option>
+                                                    <option value="music">Music</option>
+                                                    <option value="sports">Sports</option>
+                                                    <option value="entertainment">Entertainment</option>
+                                                    <option value="leadership">Leadership</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="candidateDescription">Description</label>
+                                            <textarea id="candidateDescription" rows="4" required></textarea>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="candidateImage">Candidate Image URL</label>
+                                            <input type="url" id="candidateImage" placeholder="https://example.com/image.jpg" required>
+                                            <div class="image-preview" id="candidateImagePreview"></div>
+                                        </div>
+                                        
+                                        <div class="form-actions">
+                                            <button type="submit" class="btn-primary">
+                                                <i class="fas fa-save"></i>
+                                                Save Candidate
+                                            </button>
+                                            <button type="button" class="btn-secondary" id="cancelCandidateBtn">
+                                                <i class="fas fa-times"></i>
+                                                Cancel
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
+                    
+                                <!-- Candidates List -->
+                                <div class="candidates-list">
+                                    <div class="loading" id="candidatesLoading">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                        <p>Loading candidates...</p>
+                                    </div>
+                                    
+                                    <div class="admin-products-grid" id="adminCandidatesGrid">
+                                        <!-- Candidates will be loaded here -->
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-actions">
+                                <button type="submit" class="btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    Save Ticket
+                                </button>
+                                <button type="button" class="btn-secondary" id="cancelTicketBtn">
+                                    <i class="fas fa-times"></i>
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+        
+                    <!-- Tickets List -->
+                    <div class="tickets-list">
+                        <div class="loading" id="ticketsLoading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Loading tickets...</p>
+                        </div>
+                        
+                        <div class="admin-products-grid" id="adminTicketsGrid">
+                            <!-- Tickets will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Telecom Media Admin</h3>
+                    <p>Administrative panel for managing your store</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Back to Store</a></li>
+                        <li><a href="#">Admin Guide</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Telecom Media Admin Panel. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Telecom Media. All rights reserved.
+        <span style="margin-left:1em;">
+          <a href="https://darc.com.ng" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">designed by darc design</a>
+        </span>
+      </p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="config.js"></script>
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="auth.js"></script>
+    <script type="module" src="admin.js"></script>
+    <script type="module" src="blog.js"></script>
+    <script type="module" src="admin-blog.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Modern Telecom Media</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Telecom Media</h2>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="products.html" class="nav-link">Products</a>
+                <a href="blog.html" class="nav-link active">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="cart.html" class="nav-link cart-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+                <div class="auth-links" id="authLinks">
+                    <a href="auth.html" class="nav-link">Login</a>
+                </div>
+            </div>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Section -->
+    <section class="blog-section">
+        <div class="container">
+            <h1>Our Blog</h1>
+            <div id="blogPosts" class="blog-posts"></div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 Telecom Media. All rights reserved.
+                  <span style="margin-left:1em;">
+                    <a href="https://darc.com.ng" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">designed by darc design</a>
+                  </span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script type="module" src="blog.js"></script>
+</body>
+</html>

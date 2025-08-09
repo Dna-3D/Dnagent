@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote - Modern Telecom Media</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Telecom Media</h2>
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="products.html" class="nav-link">Products</a>
+                <a href="ticket.html" class="nav-link">Tickets</a>
+                <a href="vote.html" class="nav-link active">Vote</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="cart.html" class="nav-link cart-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+                <div class="auth-links" id="authLinks">
+                    <a href="auth.html" class="nav-link">Login</a>
+                </div>
+            </div>
+            
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>Vote for Your Favorite</h1>
+            <p>Participate in our voting events</p>
+        </div>
+    </section>
+
+    <!-- Voting Filter -->
+    <section class="products-filter">
+        <div class="container">
+            <div class="filter-controls">
+                <select id="categoryFilter" class="filter-select">
+                    <option value="">All Categories</option>
+                    <option value="music">Music</option>
+                    <option value="sports">Sports</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="leadership">Leadership</option>
+                </select>
+                
+                <input type="text" id="searchInput" placeholder="Search candidates..." class="search-input">
+            </div>
+        </div>
+    </section>
+
+    <!-- Voting Grid -->
+    <section class="products-section">
+        <div class="container">
+            <div class="loading" id="candidatesLoading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Loading candidates...</p>
+            </div>
+            
+            <div class="products-grid" id="candidatesGrid">
+                <!-- Candidates will be loaded dynamically -->
+            </div>
+            
+            <div class="no-products" id="noCandidates" style="display: none;">
+                <i class="fas fa-user"></i>
+                <h3>No Candidates Found</h3>
+                <p>No candidates match your current filters. Try adjusting your search criteria.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Telecom Media</h3>
+                    <p>Your trusted Media sensation</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="ticket.html">Tickets</a></li>
+                        <li><a href="vote.html">Vote</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Track Order</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-envelope"></i>mrtelecom@gmail.com</p>
+                    <p><i class="fas fa-phone"></i>08082610560</p>
+                    <p><i class="fas fa-map-marker-alt"></i> FUTO campus</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Telecom Media. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="config.js"></script>
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="auth.js"></script>
+    <script type="module" src="vote.js"></script>
+    <script type="module" src="cart.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
