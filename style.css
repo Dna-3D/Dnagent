@@ -1954,8 +1954,12 @@ body {
 .post-content p {
   margin: 0 0 1rem 0;
   line-height: 1.7;
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
 .post-content h3{
   margin: 1.5rem 0 0.7rem;
+    padding-left: 16px;
+    padding-right: 16px;
 }
