@@ -1952,9 +1952,10 @@ body {
     padding-top: 80px;
 }
 .post-content p {
+    max-width: 960px;
   margin: 0 0 1rem 0;
   line-height: 1.7;
-    padding-left: 16px;
+    padding-left: 12px;
     padding-right: 16px;
 }
 
