@@ -1951,16 +1951,39 @@ a:hover {
 body {
     padding-top: 80px;
 }
-.post-content p {
-    max-width: 960px;
-  margin: 0 0 1rem 0;
-  line-height: 1.7;
-    padding-left: 12px;
-    padding-right: 16px;
+/* ===== FIX SLIM STORY WIDTH ISSUE ===== */
+
+/* Remove container squeeze */
+.blog-post .container {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-.post-content h3{
-  margin: 1.5rem 0 0.7rem;
-    padding-left: 16px;
-    padding-right: 16px;
+/* Make story span screen properly */
+.post-content {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+/* Ensure text elements don't re-center */
+.post-content h3,
+.post-content p {
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* Mobile Safari safety fix */
+@media (max-width: 768px) {
+    body {
+        margin: 0;
+    }
+
+    .blog-post {
+        padding: 0;
+    }
 }
