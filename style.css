@@ -1951,3 +1951,11 @@ a:hover {
 body {
     padding-top: 80px;
 }
+.post-content p {
+  margin: 0 0 1rem 0;
+  line-height: 1.7;
+}
+
+.post-content h3{
+  margin: 1.5rem 0 0.7rem;
+}
